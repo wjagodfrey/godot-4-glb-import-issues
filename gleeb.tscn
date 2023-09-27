@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpqv3nqa7gccv"]
+
+[ext_resource type="PackedScene" uid="uid://ddffedmi0ojow" path="res://gleeb.glb" id="1_tb8ii"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_m8xbd"]
+bounce = 100.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_by4lr"]
+radius = 1.61469
+
+[node name="Gleeb" instance=ExtResource("1_tb8ii")]
+physics_material_override = SubResource("PhysicsMaterial_m8xbd")
+linear_velocity = Vector3(10, 10, 10)
+
+[node name="GleebCollider" type="CollisionShape3D" parent="." index="0"]
+shape = SubResource("SphereShape3D_by4lr")
+
+[node name="Skeleton3D" parent="Gleeb_Bones" index="0"]
+bones/0/position = Vector3(1.46545, 1.01641, 0.171732)
+bones/0/rotation = Quaternion(0.374192, -0.294327, 0.791939, 0.382341)
+bones/1/rotation = Quaternion(0.105885, 0.0346024, 0.00562362, 0.99376)
+bones/2/rotation = Quaternion(0.128539, 0.0420056, 0.00682682, 0.990791)
+bones/3/rotation = Quaternion(0.133756, 0.0437104, 0.00710389, 0.990024)
+bones/4/rotation = Quaternion(0.134491, 0.0439507, 0.00714295, 0.989914)
+bones/5/rotation = Quaternion(0.0671483, 0.0219436, 0.00356631, 0.997495)
+bones/6/rotation = Quaternion(0.09742, 0.0318362, 0.00517407, 0.994721)
+bones/7/rotation = Quaternion(0.191268, 0.0625051, 0.0101584, 0.979493)
+bones/8/rotation = Quaternion(0.195052, 0.0637418, 0.0103594, 0.978665)
+bones/9/rotation = Quaternion(0.207336, 0.067756, 0.0110118, 0.975858)
+bones/9/scale = Vector3(1, 1, 1)
+
+[node name="AnimationPlayer" parent="." index="2"]
+autoplay = "Wiggle"

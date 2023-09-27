@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxlq4vvcpn6eb"]
+
+[ext_resource type="PackedScene" uid="uid://dvgvxfey447fm" path="res://gas_station.glb" id="1_xo02w"]
+
+[node name="GasStation" instance=ExtResource("1_xo02w")]

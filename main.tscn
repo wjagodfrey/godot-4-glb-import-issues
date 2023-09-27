@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://x4e1unkitlwx"]
+
+[ext_resource type="PackedScene" uid="uid://cpqv3nqa7gccv" path="res://gleeb.tscn" id="1_61giq"]
+[ext_resource type="PackedScene" uid="uid://cxlq4vvcpn6eb" path="res://gas_station.tscn" id="2_8dbyd"]
+
+[sub_resource type="Environment" id="Environment_1p3ui"]
+ambient_light_source = 2
+ambient_light_color = Color(0.423529, 0.682353, 0.905882, 1)
+ambient_light_energy = 0.75
+ssao_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.878431, 0.337255, 0.45098, 1)
+fog_light_energy = 0.7
+fog_density = 0.022
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wn1qi"]
+friction = 0.0
+bounce = 0.43
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gq1pd"]
+albedo_color = Color(1, 0.282353, 0.364706, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6upbi"]
+material = SubResource("StandardMaterial3D_gq1pd")
+size = Vector3(1000, 1, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cwc17"]
+size = Vector3(100, 1, 100)
+
+[node name="Root" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1p3ui")
+
+[node name="DirectionalLight1" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(-0.500491, -0.267917, 0.823243, 0.526569, 0.660592, 0.535111, -0.687193, 0.701312, -0.189543, 2.05076, 5.35459, -9.95109)
+light_color = Color(0.682353, 0.811765, 0.956863, 1)
+light_energy = 2.2
+shadow_enabled = true
+shadow_blur = 4.0
+
+[node name="DirectionalLight2" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.459859, -0.750737, 0.474262, 0.526569, 0.660592, 0.535111, -0.715021, 0.00365577, 0.699094, -1.56297, 5.35459, 6.88774)
+light_color = Color(1, 0.854902, 0.858824, 1)
+light_energy = 0.5
+shadow_enabled = true
+shadow_blur = 4.0
+
+[node name="Camera" type="Camera3D" parent="WorldEnvironment"]
+transform = Transform3D(0.915194, 0.0783284, -0.39533, -0.103646, 0.993682, -0.0430588, 0.389459, 0.0803814, 0.91753, -6.18803, 2.90892, 13.291)
+current = true
+
+[node name="Gleeb" parent="." instance=ExtResource("1_61giq")]
+transform = Transform3D(0.877899, 0.0837513, 0.471464, 0, 0.984586, -0.174903, -0.478845, 0.153547, 0.864367, -1.13878, 2.21432, -1.25571)
+physics_material_override = SubResource("PhysicsMaterial_wn1qi")
+linear_velocity = Vector3(0, 0, 0)
+angular_velocity = Vector3(3.49066, 3.49066, 1.74533)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="GroundMesh" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_6upbi")
+
+[node name="GroundCollider" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_cwc17")
+
+[node name="GasStation1" parent="." instance=ExtResource("2_8dbyd")]
